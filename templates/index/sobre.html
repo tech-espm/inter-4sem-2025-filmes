@@ -1,17 +1,65 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="/static/css/sobre.css" />
+
+{% endblock %}
+
 {% block body %}
 
-<div class="container-fluid">
+    <!-- Hero Section -->
+<section class="about-hero" id="about">
+    <div class="about-hero-content">
+        <h2>Sobre o IMDbear</h2>            
+		<p>Conheça a história por trás da plataforma que está revolucionando a forma como exploramos o cinema</p>
+    </div>
+</section>
 
-	<h1>
-		Sobre
-	</h1>
+    <!-- Our Story Section -->
+<section class="our-story">
+    <div class="container">
+        <h2 class="section-title">Nossa História</h2>
+        <div class="story-content">
+            <div class="story-text">
+                <p>O IMDbear nasceu da paixão por cinema e da frustração com a dificuldade em encontrar informações detalhadas e conexões entre filmes, atores e diretores.</p>
+                <p>Em 2020, um grupo de entusiastas de cinema e desenvolvedores se uniu para criar uma plataforma que não apenas catalogasse informações, mas as transformasse em visualizações intuitivas e significativas.</p>
+                <p>Hoje, somos referência em análise de dados cinematográficos, servindo milhares de usuários que compartilham da nossa paixão pelo sétima arte.</p>
+            </div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Nossa Equipe">
+            </div>
+        </div>
+    </div>
+</section>
 
-	<p>
-		Sobre nós! 😊
-	</p>
-
-</div>
+    <!-- Mission Section -->
+<section class="mission">
+    <div class="container">
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Missão</h3>
+                <p>Transformar dados complexos do cinema em visualizações intuitivas e acessíveis para todos os amantes da sétima arte.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Visão</h3>
+                <p>Ser a principal plataforma de referência para análise e exploração de dados cinematográficos em todo o mundo.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-heart"></i>
+                 </div>
+                <h3>Valores</h3>
+                <p>Paixão pelo cinema, inovação constante, precisão nos dados e compromisso com a comunidade cinematográfica.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
