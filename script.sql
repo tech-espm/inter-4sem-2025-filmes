@@ -9,15 +9,14 @@ CREATE TABLE genero (
 
 CREATE TABLE ator (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    data_nascimento DATE
+    nome VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE filme (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
-    duracao INT,
-    ano YEAR,
+    duracao VARCHAR(10),
+    ano SMALLINT,
     classificacao_etaria VARCHAR(10)
 );
 
@@ -25,8 +24,8 @@ CREATE TABLE ranking (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_filme INT NOT NULL,
     nota DECIMAL(3, 1),
-    posicao INT,
-    data DATE,
+    posicao INT NOT NULL,
+    data DATE NOT NULL,
     FOREIGN KEY (id_filme) REFERENCES filme(id_filme)
 );
 
