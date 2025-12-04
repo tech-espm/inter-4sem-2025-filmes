@@ -8,7 +8,7 @@
 		IMDbear
 	</h1>
 
-	<div class="row">
+	<div class="row d-none">
 		<div class="col-sm-4">
 
 			<div class="card shadow my-4">
@@ -29,6 +29,14 @@
 
 	<div class="card shadow my-4">
 		<div class="card-body" id="div-grafico"></div>
+	</div>
+
+	<div class="card shadow my-4">
+		<div class="card-body" id="div-grafico-generos"></div>
+	</div>
+
+	<div class="card shadow my-4">
+		<div class="card-body" id="div-grafico-anos"></div>
 	</div>
 
 </div>
@@ -69,14 +77,14 @@
 				let labels = [], data = [];
 
 				let dados = await response.json();
-				if (!dados || !dados.length) {
-					Swal.fire("Erro", "Sem dados na data especificada!", "error");
+				if (!dados || !dados.top10.length) {
+					Swal.fire("Erro", "Sem dados!", "error");
 					return;
 				}
 
-				for (let i = 0; i < dados.length; i++) {
-					labels.push(dados[i].dia);
-					data.push(dados[i].valor);
+				for (let i = 0; i < dados.top10.length; i++) {
+					labels.push(dados.top10[i].titulo);
+					data.push(dados.top10[i].nota);
 				}
 
 				let grafico = new Chart(document.getElementById("grafico-barras"), {
@@ -84,7 +92,7 @@
 					data: {
 						labels: labels,
 						datasets: [{
-							label: "Valor",
+							label: "Média de Avaliações",
 							backgroundColor: "#4e73df",
 							hoverBackgroundColor: "#2e59d9",
 							borderColor: "#4e73df",
@@ -92,6 +100,194 @@
 						}],
 					},
 					options: {
+						plugins: {
+							title: {
+								display: true,
+								text: "Top 10 Filmes Mais Bem Avaliados"
+							}
+						},
+						maintainAspectRatio: false,
+						layout: {
+							padding: {
+								left: 10,
+								right: 25,
+								top: 25,
+								bottom: 0
+							}
+						},
+						scales: {
+							x: {
+								gridLines: {
+									display: false,
+									drawBorder: false
+								},
+								ticks: {
+									maxTicksLimit: 10
+								},
+								maxBarThickness: 25,
+							},
+							y: {
+								//display: false,
+								ticks: {
+									min: 0,
+									max: 10,
+									maxTicksLimit: 10,
+									padding: 10
+								},
+								gridLines: {
+									color: "rgb(234, 236, 244)",
+									zeroLineColor: "rgb(234, 236, 244)",
+									drawBorder: false,
+									borderDash: [2],
+									zeroLineBorderDash: [2]
+								}
+							},
+						},
+						legend: {
+							display: false
+						},
+						tooltips: {
+							titleMarginBottom: 10,
+							titleFontColor: '#6e707e',
+							titleFontSize: 14,
+							backgroundColor: "rgb(255,255,255)",
+							bodyFontColor: "#858796",
+							borderColor: '#dddfeb',
+							borderWidth: 1,
+							xPadding: 15,
+							yPadding: 15,
+							displayColors: false,
+							caretPadding: 10
+						},
+					}
+				});
+
+				div = document.getElementById("div-grafico-generos");
+				div.innerHTML = '<canvas id="grafico-barras-generos" style="height: 50vh;"></canvas>';
+
+				labels = [];
+				data = [];
+
+				if (!dados || !dados.top10generos.length) {
+					Swal.fire("Erro", "Sem dados!", "error");
+					return;
+				}
+
+				for (let i = 0; i < dados.top10generos.length; i++) {
+					labels.push(dados.top10generos[i].nome);
+					data.push(dados.top10generos[i].nota);
+				}
+
+				grafico = new Chart(document.getElementById("grafico-barras-generos"), {
+					type: "bar",
+					data: {
+						labels: labels,
+						datasets: [{
+							label: "Média de Avaliações",
+							backgroundColor: "#df4e73",
+							hoverBackgroundColor: "#d92e59",
+							borderColor: "#df4e73",
+							data: data,
+						}],
+					},
+					options: {
+						plugins: {
+							title: {
+								display: true,
+								text: "Top 10 Gêneros Mais Bem Avaliados"
+							}
+						},
+						maintainAspectRatio: false,
+						layout: {
+							padding: {
+								left: 10,
+								right: 25,
+								top: 25,
+								bottom: 0
+							}
+						},
+						scales: {
+							x: {
+								gridLines: {
+									display: false,
+									drawBorder: false
+								},
+								ticks: {
+									maxTicksLimit: 10
+								},
+								maxBarThickness: 25,
+							},
+							y: {
+								//display: false,
+								ticks: {
+									min: 0,
+									max: 10,
+									maxTicksLimit: 10,
+									padding: 10
+								},
+								gridLines: {
+									color: "rgb(234, 236, 244)",
+									zeroLineColor: "rgb(234, 236, 244)",
+									drawBorder: false,
+									borderDash: [2],
+									zeroLineBorderDash: [2]
+								}
+							},
+						},
+						legend: {
+							display: false
+						},
+						tooltips: {
+							titleMarginBottom: 10,
+							titleFontColor: '#6e707e',
+							titleFontSize: 14,
+							backgroundColor: "rgb(255,255,255)",
+							bodyFontColor: "#858796",
+							borderColor: '#dddfeb',
+							borderWidth: 1,
+							xPadding: 15,
+							yPadding: 15,
+							displayColors: false,
+							caretPadding: 10
+						},
+					}
+				});
+
+				div = document.getElementById("div-grafico-anos");
+				div.innerHTML = '<canvas id="grafico-barras-anos" style="height: 50vh;"></canvas>';
+
+				labels = [];
+				data = [];
+
+				if (!dados || !dados.top10anos.length) {
+					Swal.fire("Erro", "Sem dados!", "error");
+					return;
+				}
+
+				for (let i = 0; i < dados.top10anos.length; i++) {
+					labels.push(dados.top10anos[i].ano.toString());
+					data.push(dados.top10anos[i].nota);
+				}
+
+				grafico = new Chart(document.getElementById("grafico-barras-anos"), {
+					type: "bar",
+					data: {
+						labels: labels,
+						datasets: [{
+							label: "Média de Avaliações",
+							backgroundColor: "#73df4e",
+							hoverBackgroundColor: "#59d92e",
+							borderColor: "#73df4e",
+							data: data,
+						}],
+					},
+					options: {
+						plugins: {
+							title: {
+								display: true,
+								text: "Média de Avaliações por Ano"
+							}
+						},
 						maintainAspectRatio: false,
 						layout: {
 							padding: {
