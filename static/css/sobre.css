@@ -499,3 +499,25 @@ footer {
         font-size: 2rem;
     }
 }
+
+.member-social {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-link {
+    color: #333;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: #0077b5; /* Azul do LinkedIn */
+}
+
+.social-link:hover:nth-child(2) {
+    color: #333; /* Cor do GitHub */
+}
